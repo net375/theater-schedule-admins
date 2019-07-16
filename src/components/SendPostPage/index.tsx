@@ -1,6 +1,6 @@
 import React from 'react';
 import './SendPostPage.css';
-import { async } from 'q';
+import ApiManager from '../../util/apiManager';
 
 interface ISendPostPageProps {
     isPersonal: false,
@@ -13,6 +13,8 @@ interface ISendPostPageState {
 }
 
 class SendPostPage extends React.Component<ISendPostPageProps, ISendPostPageState> {
+    public apiManager = new ApiManager();
+
     constructor(props: any) {
         super(props);
         this.state = {
@@ -37,7 +39,25 @@ class SendPostPage extends React.Component<ISendPostPageProps, ISendPostPageStat
     }
 
     public handleSend = async (e: any) => {
-        console.log();
+        const adminsPost = {
+            Subject: this.state.subject,
+            PostText: this.state.messageText,
+            PostDate: new Date(),
+            IsPersonal: false,
+            ToUserId: null
+        };
+        const response = await this.apiManager.createAdminsPost(JSON.stringify(adminsPost));
+        if (response.status === 201) {
+            alert("Повідомлення відправлено");
+            this.setState({
+                subject: "",
+                messageText: ""
+            });
+        }
+        else {
+            alert("Виникла помилка");
+            console.log(response);
+        }
     }
 
     public render() {
@@ -47,7 +67,7 @@ class SendPostPage extends React.Component<ISendPostPageProps, ISendPostPageStat
                     <p>Кому: всім</p>
 
                     <div className="text-right">
-                        <button className="saveButton" onClick={() => null}>Надіслати</button>
+                        <button className="saveButton" onClick={this.handleSend}>Надіслати</button>
                     </div>
                 </div>
                 <div className="inputs">
