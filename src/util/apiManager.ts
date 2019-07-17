@@ -18,6 +18,22 @@ class ApiManager {
             return error;
         });
     }
+
+    public async getMessages(): Promise<Response> {
+        return await fetch(`${this.backendAdminUrl}api/Message`,{ 
+            headers: {
+                "Accept": "application/json",
+                "Access-Control-Allow-Origin": "*",
+                "Content-Type": "application/json",
+            },
+            method: "GET",}
+        )
+        .then((data) => {
+            return data;
+        }).catch((error) => {
+            return error;
+        });
+    }
 }
 
 export default ApiManager;
