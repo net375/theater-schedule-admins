@@ -1,0 +1,18 @@
+.performance{
+    background-color:  #17212b;
+    color:white;
+    max-width: 1500px;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 17px 2.76% 2.35% 21px;
+    background-color: #17212b;
+    border-radius: 10px;
+    margin-bottom: 18px;
+    font-size: 14px;
+    font-weight: 300;
+    margin-top: 1.5%;
+}
+
+.fullName{
+    margin-left: 30px;
+}
