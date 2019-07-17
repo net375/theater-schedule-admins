@@ -24,6 +24,21 @@ class ApiManager {
         });
     }
 
+    public sentLink(json: string):Promise<Response>{
+        return  fetch(`${this.backendAdminUrl}api/FormUrl/AddUrl`,{ 
+            headers: {
+                "Accept": "application/json",
+                "Access-Control-Allow-Origin": "*",
+                "Content-Type": "application/json",
+            },
+            method: "POST",
+            body:json}           
+        )
+        .catch((error) => {
+            return error;
+        });
+    }
+
 }
 
 export default ApiManager;
