@@ -42,50 +42,41 @@ class SentLink extends Component<ISentLinkProps, ISentLinkState> {
 
     }
 
+    public handleNotification = (text: string, img: any) => {
+        this.setState({
+            isSuccess: true,
+            imgItem: img,
+            text: text
+        });
+
+        setTimeout(() => this.setState({ isSuccess: false }), 2000);
+    }
+
     public handleSave = async () => {
         const url = { "url": this.state.url };
 
-        if (url.url !== "") {
-            //alert("Посилання відправленоо");
-            const resp = await this.apimanager.sentLink(JSON.stringify(url))
-            const obj = JSON.stringify(resp);
-            console.log(obj)
-            if (resp.status === 201) {
-                this.setState({ url: "", isSuccess: true });
-                this.setState({
-                    imgItem: Check,
-                    text: "Посилання збережено"
-                });
-                setTimeout(() => this.setState({ isSuccess: false }), 2000);
-            }
-            else if (resp.status === 500) {
-                this.setState({ url: "", isSuccess: true });
-                this.setState({
-                    imgItem: Close,
-                    text: "Виникла помилка на сервері"
-                });
-                setTimeout(() => this.setState({ isSuccess: false }), 2000);
-
-            } else {
-                this.setState({ url: "", isSuccess: true });
-                this.setState({
-                    imgItem: Close,
-                    text: "Не вдалось підключитись до серверу. Перевірте з'єднання з сервером."
-                });
-                setTimeout(() => this.setState({ isSuccess: false }), 2000);
-            }
-
-        } else {
-            this.setState({ url: "", isSuccess: true });
-            this.setState({
-                imgItem: Close,
-                text: "Введіть посилання"
-            });
-            setTimeout(() => this.setState({ isSuccess: false }), 2000);
+        if (url.url === "") {
+            this.handleNotification("Введіть посилання", Close);
+            return;
         }
 
+        const resp = await this.apimanager.sentLink(JSON.stringify(url))
+        const obj = JSON.stringify(resp);
+
+        if (resp.status === 201) {
+            this.setState({ url: "" });
+            this.handleNotification("Посилання збережено", Check)
+        }
+        else if (resp.status === 500) {
+            this.handleNotification("Виникла помилка на сервері", Close)
+        } else {
+            this.handleNotification("Не вдалось підключитись до серверу. Перевірте з'єднання з сервером.", Close)
+        }
 
     }
+
+
+
 
 
     render() {

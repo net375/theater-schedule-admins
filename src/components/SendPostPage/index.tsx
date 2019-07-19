@@ -1,6 +1,9 @@
 import React from 'react';
 import './SendPostPage.css';
 import ApiManager from '../../util/apiManager';
+import SuccessAnimatiion from "../UI/Completed/SuccessAnimation"
+import Check from "../../assets/images/check.png"
+import Close from "../../assets/images/close.png"
 
 interface ISendPostPageProps {
     isPersonal: false,
@@ -9,7 +12,10 @@ interface ISendPostPageProps {
 
 interface ISendPostPageState {
     subject: string,
-    messageText: string
+    messageText: string,
+    isSuccess: boolean;
+    imgItem: any;
+    text: string;
 }
 
 class SendPostPage extends React.Component<ISendPostPageProps, ISendPostPageState> {
@@ -19,7 +25,10 @@ class SendPostPage extends React.Component<ISendPostPageProps, ISendPostPageStat
         super(props);
         this.state = {
             subject: '',
-            messageText: ''
+            messageText: '',
+            isSuccess: false,
+            imgItem: null,
+            text: ""
         };
     }
 
@@ -38,6 +47,17 @@ class SendPostPage extends React.Component<ISendPostPageProps, ISendPostPageStat
         }
     }
 
+    public handleNotification = (text:string,img:any) =>
+    {
+        this.setState({
+            isSuccess: true,
+            imgItem: img,
+            text: text
+        });
+
+        setTimeout(() => this.setState({ isSuccess: false }), 2000);
+    }
+
     public handleSend = async (e: any) => {
         const adminsPost = {
             Subject: this.state.subject,
@@ -46,16 +66,20 @@ class SendPostPage extends React.Component<ISendPostPageProps, ISendPostPageStat
             IsPersonal: false,
             ToUserId: null
         };
+
+        if (adminsPost.Subject==="" || adminsPost.PostText==="")
+        {
+            this.handleNotification("Заповніть всі поля", Close)
+
+            return;
+        }
         const response = await this.apiManager.createAdminsPost(JSON.stringify(adminsPost));
+        
         if (response.status === 201) {
-            alert("Повідомлення відправлено");
-            this.setState({
-                subject: "",
-                messageText: ""
-            });
+            this.handleNotification("Посилання збережено", Check)
         }
         else {
-            alert("Виникла помилка");
+            this.handleNotification("Помилка на сервері", Close)
             console.log(response);
         }
     }
@@ -63,6 +87,7 @@ class SendPostPage extends React.Component<ISendPostPageProps, ISendPostPageStat
     public render() {
         return (
             <div className="sendPost">
+                <SuccessAnimatiion isSuccess={this.state.isSuccess} text={this.state.text} imgSrc={this.state.imgItem} />
                 <div className="formHeader">
                     <p>Кому: всім</p>
 
