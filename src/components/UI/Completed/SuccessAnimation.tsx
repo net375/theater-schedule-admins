@@ -1,11 +1,12 @@
 import './SuccessAnimation.css';
 import React, { Component } from "react";
-import Check from "../../../assets/images/check.png"
 import Aux from "../../../hoc/Auxiliary"
 
 
 interface ISuccessProps {
     isSuccess: boolean;
+    imgSrc:any;
+    text: string;
 }
 
 const SuccessAnimatiion = (props: ISuccessProps) => {
@@ -14,8 +15,8 @@ const SuccessAnimatiion = (props: ISuccessProps) => {
             <Aux>
                 <div className="Backdrop"></div>
                 <div className="success">
-                    <img src={Check} />
-                    <text className="text">Посилання збережено</text>
+                    <img src={props.imgSrc} />
+                    <text className="text">{props.text}</text>
                 </div>
             </Aux>):null
     );

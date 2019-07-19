@@ -14,7 +14,7 @@ class Sidebar extends React.Component {
                         id={0}
                         name="Вхідні повідомлення"
                         imgSrc={inboxLogo}
-                        path=""
+                        path="/Messages"
                         clicked={null}
                     />
                     <SidebarItem
@@ -28,7 +28,7 @@ class Sidebar extends React.Component {
                         id={2}
                         name="Форма для опитування"
                         imgSrc={formLogo}
-                        path=""
+                        path="/formslink"
                         clicked={null}
                     />
                 </nav>
