@@ -21,7 +21,7 @@ class Sidebar extends React.Component {
                         id={1}
                         name="Надіслати повідомлення"
                         imgSrc={sendLogo}
-                        path=""
+                        path="/sendpost"
                         clicked={null}
                     />
                     <SidebarItem

@@ -1,15 +1,26 @@
-
-
 class ApiManager {
-    public backendAdminUrl = "";
+    public backendUrl = "";
 
     constructor() {
-        this.backendAdminUrl = "http://192.168.103.77:50/";
+        this.backendUrl = "http://localhost:5000/";
     }
 
-    public  getMessages(): Promise<Response> {
-        
-        return  fetch(`${this.backendAdminUrl}api/Message`,{ 
+    public async createAdminsPost(json: string): Promise<Response> {
+        return await fetch(`${this.backendUrl}api/AdminsPost`, {
+            body: json,
+            headers: {
+                "Accept": "application/json",
+                "Access-Control-Allow-Origin": "*",
+                "Content-Type": "application/json"
+            },
+            method: "POST"
+        }).catch(error => {
+            return error;
+        });
+    }
+
+    public async getMessages(): Promise<Response> {
+        return await fetch(`${this.backendAdminUrl}api/Message`,{ 
             headers: {
                 "Accept": "application/json",
                 "Access-Control-Allow-Origin": "*",
@@ -23,6 +34,7 @@ class ApiManager {
             return error;
         });
     }
+
 
     public sentLink(json: string):Promise<Response>{
         return  fetch(`${this.backendAdminUrl}api/FormUrl/AddUrl`,{ 
@@ -38,7 +50,6 @@ class ApiManager {
             return error;
         });
     }
-
 }
 
 export default ApiManager;

@@ -1,0 +1,61 @@
+.formHeader{
+    display: flex;
+    color:white;
+    width: 100%;
+    justify-content: space-between;
+    font-size:24px;
+}
+
+.inputs {
+    margin-top: 5px;
+}
+
+.sendPost {
+    margin-left: 20%;
+    color:white;
+    padding: 18px 3.6% 0;
+}
+
+.messageArea {
+    margin-top: 10px;
+    height: 300px;
+    padding: 10px;
+    resize: none;
+}
+
+.saveButton{
+    background-color: #8cc152;
+    color:white;
+    border: none;
+    height: 30px;
+    transition: background-color 0.25s;
+    border-radius: 20px;
+    text-align: center;
+    cursor: default;
+    width: 100px;
+    font-size: 17px;
+    -webkit-appearance: none;
+}
+
+.saveButton:hover{
+    cursor: pointer;
+    background-color: #77a347;
+}
+
+input[type="text"], textarea {
+
+    background-color : #17212b;
+    border: none; 
+    border-radius: 5px;
+    color:white;    
+    width: 100%;
+    height: 30px;
+    padding: 10px;
+    outline: none;
+    transition: box-shadow 0.4s;
+}
+input[type="text"]:focus, textarea:focus{
+    outline: none !important;
+    border: 1px solid #447ecb;
+    box-shadow: 0 0 5px white;
+}

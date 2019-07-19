@@ -1,6 +1,6 @@
 .sidebar {
     position: fixed;
-    width: 290px;
+    width: 20%;
     height: 100%;
     background-color: #17212b;
 
@@ -16,10 +16,4 @@
 
     text-align: center;
     font-size: 1.1rem;
-}
-
-@media screen and (max-width: 1200px) {
-    .sidebar {
-        width: 25%;
-    }
 }
