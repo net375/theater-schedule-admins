@@ -1,0 +1,75 @@
+.performance {
+    background-color: #17212b;
+    color: white;
+    max-width: 1500px;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 17px 2.76% 2.35% 21px;
+    background-color: #17212b;
+    border-radius: 10px;
+    margin-bottom: 18px;
+    font-size: 14px;
+    font-weight: 300;
+    margin-top: 1.5%;
+}
+
+.perfomanceList {
+    margin-left: 290px;
+    padding: 18px 3.6% 0;
+}
+
+.inputLink {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+}
+
+input[type="url"]:focus,
+textarea:focus {
+    outline: none !important;
+    border: 1px solid #447ecb;
+    box-shadow: 0 0 5px white;
+}
+
+input[type="url"],
+textarea {
+    background-color: #17212b;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    width: 100%;
+    height: 30px;
+    padding: 10px;
+    outline: none;
+    transition: box-shadow 0.4s;
+    flex-grow: 4;
+}
+
+.saveButton:hover {
+    cursor: pointer;
+    background-color: #77a347;
+}
+
+.saveButton {
+    background-color: #8cc152;
+    color: white;
+    border: none;
+    height: 30px;
+    transition: background-color 0.25s;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    cursor: default;
+    width: 138px;
+    text-align: center;
+    padding-right: 10px;
+    font-size: 17px;
+    -webkit-appearance: none;
+    flex-grow: 1;
+}
+
+.Sentlink {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 290px;
+    padding: 18px 3.6% 0;
+}
