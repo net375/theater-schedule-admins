@@ -75,10 +75,6 @@ class SentLink extends Component<ISentLinkProps, ISentLinkState> {
 
     }
 
-
-
-
-
     render() {
         return (
             <Aux>
